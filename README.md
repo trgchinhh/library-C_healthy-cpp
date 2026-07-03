@@ -1,4 +1,4 @@
-![C_healthy-Cpp-logo](img/logo.png)
+![C_healthy-logo](img/logo.png)
 
 ## C_healthy C++
 
@@ -82,13 +82,13 @@ int main(){
     cout << ch.INSTRUCT() << endl;
 
     // In hướng dẫn của BMI, không ghi file
-    cout << ch.INSTRUCT("BMI") << endl;
+    cout << ch.INSTRUCT("BMI", ghi_file=false) << endl;
 
     // In hướng dẫn của BMI và ghi ra file
-    cout << ch.INSTRUCT("BMI", true) << endl;
+    cout << ch.INSTRUCT("BMI", ghi_file=true) << endl;
 
     // Ghi toàn bộ hướng dẫn ra file
-    cout << ch.INSTRUCT("all", true) << endl;
+    cout << ch.INSTRUCT("all", ghi_file=true) << endl;
 }
 ```
 
@@ -209,7 +209,6 @@ int main(){
     return 0;
 }
 ```
-
 ---
 
 ## Tác giả
