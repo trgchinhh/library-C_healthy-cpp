@@ -72,7 +72,7 @@
 
 ---
 
-## Cách cài đặt và nâng cấp
+## Cách cài đặt
 ```bash
 git clone https://github.com/trgchinhh/library-C_healthy-cpp.git
 cd library-C_healthy-cpp
