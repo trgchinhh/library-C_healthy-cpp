@@ -1,3 +1,4 @@
+#include <iostream>
 #include "chealthy.hpp"
 
 void banner(){
