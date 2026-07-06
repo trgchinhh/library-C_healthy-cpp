@@ -137,6 +137,7 @@ int main(){
 
 Chi tiết đầy đủ cách dùng 
 ```cpp
+#include <iostream>
 #include "chealthy.hpp"
 
 struct INDEX_BODY {
