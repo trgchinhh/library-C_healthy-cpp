@@ -10,7 +10,7 @@
 // (!) AUTHOR: NGUYEN TRUONG CHINH (NTC++)
 
 /**************************************************************************\
-  * New update at 06/07/2026E
+  * New update at 06/07/2026
   * Note: download the file to the project you want to include
   * The program is written based on the C-healthy python library
   * Feature: including indexing and giving advice
