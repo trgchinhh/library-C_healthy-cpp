@@ -125,28 +125,19 @@ int main(){
     cout << ch.INSTRUCT() << endl;
 
     // In hướng dẫn của BMI, không ghi file
-    cout << ch.INSTRUCT("BMI", ghi_file=false) << endl;
+    cout << ch.INSTRUCT("BMI", false) << endl;
 
     // In hướng dẫn của BMI và ghi ra file
-    cout << ch.INSTRUCT("BMI", ghi_file=true) << endl;
+    cout << ch.INSTRUCT("BMI", true) << endl;
 
     // Ghi toàn bộ hướng dẫn ra file
-    cout << ch.INSTRUCT("all", ghi_file=true) << endl;
+    cout << ch.INSTRUCT("all", true) << endl;
 }
 ```
 
 Chi tiết đầy đủ cách dùng 
 ```cpp
 #include "chealthy.hpp"
-#include <windows.h>
-
-#define RESET "\033[0m"
-#define YELLOW  "\033[33m"
-#define GREEN   "\033[32m"
-#define CYAN "\033[36m"
-#define RED "\033[31m"
-#define MAGENTA "\033[35m"
-
 
 struct INDEX_BODY {
 public:
@@ -159,7 +150,7 @@ public:
                float cholesterol, float bloodPressure, float tg = 1.5f, float hdl = 1.2f,
                float muac = 28.0f, float tsf = 12.0f, float vo2_rate = 14.0f,
                float intensity = 0.7f, float deficit_amount = 500.0f, float surplus_amount = 300.0f,
-               string activity_level = "high")
+               string activity_level = "medium")
     {
         this->gender = gender;
         this->age = age;
@@ -188,262 +179,260 @@ int main(){
     system("cls");
 
     C_HEALTHY ch;
-
     INDEX_BODY ib(
-        "nam", 25, 70, 1.75, 85, 95, 3, 190, 60, 200, 120
+        "male", 25, 70, 1.75, 85, 95, 3, 190, 60, 200, 120
     );
 
-    cout << YELLOW << "Chỉ số BMI là: " << ch.BMI(ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABMI(ch.BMI(ib.weight, ib.height)) << RESET << endl;
+    cout << "BMI Index: " << ch.BMI(ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABMI(ch.BMI(ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BMR là: " << ch.BMR(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABMR(ib.gender, ch.BMR(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "BMR Index: " << ch.BMR(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABMR(ib.gender, ch.BMR(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số TDEE là: " << ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NATDEE(ib.gender, ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel)) << RESET << endl;
+    cout << "TDEE Index: " << ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel) << endl;
+    cout << "-> Advice: " << ch.NATDEE(ib.gender, ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số WHR là: " << ch.WHR(ib.gender, ib.waist, ib.hip) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAWHR(ch.WHR(ib.gender, ib.waist, ib.hip)) << RESET << endl;
+    cout << "WHR Index: " << ch.WHR(ib.gender, ib.waist, ib.hip) << endl;
+    cout << "-> Advice: " << ch.NAWHR(ch.WHR(ib.gender, ib.waist, ib.hip)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số LBM là: " << ch.LBM(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NALBM(ch.LBM(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "LBM Index: " << ch.LBM(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NALBM(ch.LBM(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FFMI là: " << ch.FFMI(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAFFMI(ch.FFMI(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "FFMI Index: " << ch.FFMI(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAFFMI(ch.FFMI(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số RFM là: " << ch.RFM(ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NARFM(ch.RFM(ib.waist, ib.height)) << RESET << endl;
+    cout << "RFM Index: " << ch.RFM(ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NARFM(ch.RFM(ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BFP là: " << ch.BFP(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABFP(ch.BFP(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "BFP Index: " << ch.BFP(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABFP(ch.BFP(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BBW là: " << ch.BBW(ib.weight) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABBW(ch.BBW(ib.weight)) << RESET << endl;
+    cout << "BBW Index: " << ch.BBW(ib.weight) << endl;
+    cout << "-> Advice: " << ch.NABBW(ch.BBW(ib.weight)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số IBW là: " << ch.IBW(ib.gender, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAIBW(ch.IBW(ib.gender, ib.height)) << RESET << endl;
+    cout << "IBW Index: " << ch.IBW(ib.gender, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAIBW(ch.IBW(ib.gender, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MA là: " << ch.MA(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMA(ch.MA(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "MA Index: " << ch.MA(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAMA(ch.MA(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số VFR là: " << ch.VFR(ib.waist, ib.hip) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAVFR(ch.VFR(ib.waist, ib.hip)) << RESET << endl;
+    cout << "VFR Index: " << ch.VFR(ib.waist, ib.hip) << endl;
+    cout << "-> Advice: " << ch.NAVFR(ch.VFR(ib.waist, ib.hip)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BSA là: " << ch.BSA(ib.height, ib.weight) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABSA(ch.BSA(ib.height, ib.weight)) << RESET << endl;
+    cout << "BSA Index: " << ch.BSA(ib.height, ib.weight) << endl;
+    cout << "-> Advice: " << ch.NABSA(ch.BSA(ib.height, ib.weight)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số VO2MAX là: " << ch.VO2MAX(ib.maxHeartRate, ib.restHeartRate) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAVO2MAX(ch.VO2MAX(ib.maxHeartRate, ib.restHeartRate)) << RESET << endl;
+    cout << "VO2MAX Index: " << ch.VO2MAX(ib.maxHeartRate, ib.restHeartRate) << endl;
+    cout << "-> Advice: " << ch.NAVO2MAX(ch.VO2MAX(ib.maxHeartRate, ib.restHeartRate)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số HSI là: " << ch.HSI(ib.gender, ib.weight, ib.height, ib.age, ib.cholesterol, ib.bloodPressure) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAHSI(ch.HSI(ib.gender, ib.weight, ib.height, ib.age, ib.cholesterol, ib.bloodPressure)) << RESET << endl;
+    cout << "HSI Index: " << ch.HSI(ib.gender, ib.weight, ib.height, ib.age, ib.cholesterol, ib.bloodPressure) << endl;
+    cout << "-> Advice: " << ch.NAHSI(ch.HSI(ib.gender, ib.weight, ib.height, ib.age, ib.cholesterol, ib.bloodPressure)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MMI là: " << ch.MMI(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMMI(ch.MMI(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "MMI Index: " << ch.MMI(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAMMI(ch.MMI(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BFM là: " << ch.BFM(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABFM(ch.BFM(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "BFM Index: " << ch.BFM(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABFM(ch.BFM(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ABSI là: " << ch.ABSI(ib.waist, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAABSI(ch.ABSI(ib.waist, ib.weight, ib.height)) << RESET << endl;
+    cout << "ABSI Index: " << ch.ABSI(ib.waist, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAABSI(ch.ABSI(ib.waist, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số AVI là: " << ch.AVI(ib.waist, ib.hip) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAAVI(ch.AVI(ib.waist, ib.hip)) << RESET << endl;
+    cout << "AVI Index: " << ch.AVI(ib.waist, ib.hip) << endl;
+    cout << "-> Advice: " << ch.NAAVI(ch.AVI(ib.waist, ib.hip)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BAI là: " << ch.BAI(ib.hip, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABAI(ch.BAI(ib.hip, ib.height)) << RESET << endl;
+    cout << "BAI Index: " << ch.BAI(ib.hip, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABAI(ch.BAI(ib.hip, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số CI là: " << ch.CI(ib.weight, ib.height, ib.waist) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NACI(ch.CI(ib.weight, ib.height, ib.waist)) << RESET << endl;
+    cout << "CI Index: " << ch.CI(ib.weight, ib.height, ib.waist) << endl;
+    cout << "-> Advice: " << ch.NACI(ch.CI(ib.weight, ib.height, ib.waist)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số WHtR là: " << ch.WHtR(ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAWHtR(ch.WHtR(ib.waist, ib.height)) << RESET << endl;
+    cout << "WHtR Index: " << ch.WHtR(ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAWHtR(ch.WHtR(ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số Ponderal Index là: " << ch.PonderalIndex(ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAPonderalIndex(ch.PonderalIndex(ib.weight, ib.height)) << RESET << endl;
+    cout << "Ponderal Index: " << ch.PonderalIndex(ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAPonderalIndex(ch.PonderalIndex(ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FMI là: " << ch.FMI(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAFMI(ch.FMI(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "FMI Index: " << ch.FMI(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAFMI(ch.FMI(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FFM là: " << ch.FFM(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAFFM(ch.FFM(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "FFM Index: " << ch.FFM(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAFFM(ch.FFM(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FMR là: " << ch.FMR(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAFMR(ch.FMR(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "FMR Index: " << ch.FMR(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAFMR(ch.FMR(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số TBW là: " << ch.TBW(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NATBW(ch.TBW(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "TBW Index: " << ch.TBW(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NATBW(ch.TBW(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ECW là: " << ch.ECW(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAECW(ch.ECW(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "ECW Index: " << ch.ECW(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAECW(ch.ECW(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ICW là: " << ch.ICW(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAICW(ch.ICW(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "ICW Index: " << ch.ICW(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAICW(ch.ICW(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BCM là: " << ch.BCM(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABCM(ch.BCM(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "BCM Index: " << ch.BCM(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABCM(ch.BCM(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số SMI là: " << ch.SMI(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NASMI(ch.SMI(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "SMI Index: " << ch.SMI(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NASMI(ch.SMI(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ASMI là: " << ch.ASMI(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAASMI(ch.ASMI(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "ASMI Index: " << ch.ASMI(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAASMI(ch.ASMI(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MAMC là: " << ch.MAMC(ib.muac, ib.tsf) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMAMC(ch.MAMC(ib.muac, ib.tsf)) << RESET << endl;
+    cout << "MAMC Index: " << ch.MAMC(ib.muac, ib.tsf) << endl;
+    cout << "-> Advice: " << ch.NAMAMC(ch.MAMC(ib.muac, ib.tsf)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MUAC Assessment là: " << ch.MUAC_Assessment(ib.gender, ib.muac) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMUAC(ch.MUAC_Assessment(ib.gender, ib.muac)) << RESET << endl;
+    cout << "MUAC Assessment: " << ch.MUAC_Assessment(ib.gender, ib.muac) << endl;
+    cout << "-> Advice: " << ch.NAMUAC(ch.MUAC_Assessment(ib.gender, ib.muac)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BEE là: " << ch.BEE(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABEE(ch.BEE(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "BEE Index: " << ch.BEE(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABEE(ch.BEE(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số REE là: " << ch.REE(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAREE(ch.REE(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "REE Index: " << ch.REE(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAREE(ch.REE(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số PAL là: " << ch.PAL(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAPAL(ch.PAL(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel)) << RESET << endl;
+    cout << "PAL Index: " << ch.PAL(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel) << endl;
+    cout << "-> Advice: " << ch.NAPAL(ch.PAL(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MET là: " << ch.MET(ib.vo2_rate) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMET(ch.MET(ib.vo2_rate)) << RESET << endl;
+    cout << "MET Index: " << ch.MET(ib.vo2_rate) << endl;
+    cout << "-> Advice: " << ch.NAMET(ch.MET(ib.vo2_rate)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MaxHeartRate là: " << ch.MaxHeartRate(ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMaxHeartRate(ch.MaxHeartRate(ib.age)) << RESET << endl;
+    cout << "MaxHeartRate Index: " << ch.MaxHeartRate(ib.age) << endl;
+    cout << "-> Advice: " << ch.NAMaxHeartRate(ch.MaxHeartRate(ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số HeartRateReserve là: " << ch.HeartRateReserve(ib.restHeartRate, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAHeartRateReserve(ch.HeartRateReserve(ib.restHeartRate, ib.age)) << RESET << endl;
+    cout << "HeartRateReserve Index: " << ch.HeartRateReserve(ib.restHeartRate, ib.age) << endl;
+    cout << "-> Advice: " << ch.NAHeartRateReserve(ch.HeartRateReserve(ib.restHeartRate, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số TargetHeartRate là: " << ch.TargetHeartRate(ib.restHeartRate, ib.age, ib.intensity) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NATargetHeartRate(ch.TargetHeartRate(ib.restHeartRate, ib.age, ib.intensity)) << RESET << endl;
+    cout << "TargetHeartRate Index: " << ch.TargetHeartRate(ib.restHeartRate, ib.age, ib.intensity) << endl;
+    cout << "-> Advice: " << ch.NATargetHeartRate(ch.TargetHeartRate(ib.restHeartRate, ib.age, ib.intensity)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số CalorieDeficit là: " << ch.CalorieDeficit(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.deficit_amount) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NACalorieDeficit(ch.CalorieDeficit(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.deficit_amount)) << RESET << endl;
+    cout << "CalorieDeficit Index: " << ch.CalorieDeficit(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.deficit_amount) << endl;
+    cout << "-> Advice: " << ch.NACalorieDeficit(ch.CalorieDeficit(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.deficit_amount)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số CalorieSurplus là: " << ch.CalorieSurplus(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.surplus_amount) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NACalorieSurplus(ch.CalorieSurplus(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.surplus_amount)) << RESET << endl;
+    cout << "CalorieSurplus Index: " << ch.CalorieSurplus(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.surplus_amount) << endl;
+    cout << "-> Advice: " << ch.NACalorieSurplus(ch.CalorieSurplus(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ib.surplus_amount)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ProteinNeed là: " << ch.ProteinNeed(ib.weight, ib.activity_level) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAProteinNeed(ch.ProteinNeed(ib.weight, ib.activity_level)) << RESET << endl;
+    cout << "ProteinNeed Index: " << ch.ProteinNeed(ib.weight, ib.activity_level) << endl;
+    cout << "-> Advice: " << ch.NAProteinNeed(ch.ProteinNeed(ib.weight, ib.activity_level)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FatNeed là: " << ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAFatNeed(ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f)) << RESET << endl;
+    cout << "FatNeed Index: " << ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f) << endl;
+    cout << "-> Advice: " << ch.NAFatNeed(ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số CarbNeed là: " << ch.CarbNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ch.ProteinNeed(ib.weight, ib.activity_level), ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f)) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NACarbNeed(ch.CarbNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ch.ProteinNeed(ib.weight, ib.activity_level), ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f))) << RESET << endl;
+    cout << "CarbNeed Index: " << ch.CarbNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ch.ProteinNeed(ib.weight, ib.activity_level), ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f)) << endl;
+    cout << "-> Advice: " << ch.NACarbNeed(ch.CarbNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), ch.ProteinNeed(ib.weight, ib.activity_level), ch.FatNeed(ch.TDEE(ib.gender, ib.weight, ib.height, ib.age, ib.activityLevel), 0.25f))) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số WaterNeed là: " << ch.WaterNeed(ib.weight, 60.0f) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAWaterNeed(ch.WaterNeed(ib.weight, 60.0f)) << RESET << endl;
+    cout << "WaterNeed Index: " << ch.WaterNeed(ib.weight, 60.0f) << endl;
+    cout << "-> Advice: " << ch.NAWaterNeed(ch.WaterNeed(ib.weight, 60.0f)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số IdealWater là: " << ch.IdealWater(ib.weight) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAIdealWater(ch.IdealWater(ib.weight)) << RESET << endl;
+    cout << "IdealWater Index: " << ch.IdealWater(ib.weight) << endl;
+    cout << "-> Advice: " << ch.NAIdealWater(ch.IdealWater(ib.weight)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số LeanBodyPercentage là: " << ch.LeanBodyPercentage(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NALeanBodyPercentage(ch.LeanBodyPercentage(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "LeanBodyPercentage Index: " << ch.LeanBodyPercentage(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NALeanBodyPercentage(ch.LeanBodyPercentage(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FatPercentage là: " << ch.FatPercentage(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABFP(ch.FatPercentage(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "FatPercentage Index: " << ch.FatPercentage(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABFP(ch.FatPercentage(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số MusclePercentage là: " << ch.MusclePercentage(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAMusclePercentage(ch.MusclePercentage(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "MusclePercentage Index: " << ch.MusclePercentage(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAMusclePercentage(ch.MusclePercentage(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BoneMassEstimate là: " << ch.BoneMassEstimate(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABoneMassEstimate(ch.BoneMassEstimate(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "BoneMassEstimate Index: " << ch.BoneMassEstimate(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABoneMassEstimate(ch.BoneMassEstimate(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BMIPrime là: " << ch.BMIPrime(ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABMIPrime(ch.BMIPrime(ib.weight, ib.height)) << RESET << endl;
+    cout << "BMIPrime Index: " << ch.BMIPrime(ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABMIPrime(ch.BMIPrime(ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số CorpulenceIndex là: " << ch.CorpulenceIndex(ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAPonderalIndex(ch.CorpulenceIndex(ib.weight, ib.height)) << RESET << endl;
+    cout << "CorpulenceIndex Index: " << ch.CorpulenceIndex(ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NAPonderalIndex(ch.CorpulenceIndex(ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số RelativeFatMass_Ext là: " << ch.RelativeFatMass_Ext(ib.gender, ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NARFM(ch.RelativeFatMass_Ext(ib.gender, ib.waist, ib.height)) << RESET << endl;
+    cout << "RelativeFatMass_Ext Index: " << ch.RelativeFatMass_Ext(ib.gender, ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NARFM(ch.RelativeFatMass_Ext(ib.gender, ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số BodyRoundnessIndex là: " << ch.BodyRoundnessIndex(ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABodyRoundnessIndex(ch.BodyRoundnessIndex(ib.waist, ib.height)) << RESET << endl;
+    cout << "BodyRoundnessIndex Index: " << ch.BodyRoundnessIndex(ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABodyRoundnessIndex(ch.BodyRoundnessIndex(ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ABodyRoundness là: " << ch.ABodyRoundness(ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABodyRoundnessIndex(ch.ABodyRoundness(ib.waist, ib.height)) << RESET << endl;
+    cout << "ABodyRoundness Index: " << ch.ABodyRoundness(ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABodyRoundnessIndex(ch.ABodyRoundness(ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số ABRI là: " << ch.ABRI(ib.waist, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAABRI(ch.ABRI(ib.waist, ib.height)) << RESET << endl;
+    cout << "ABRI Index: " << ch.ABodyRoundness(ib.waist, ib.height) << endl;
+    cout << "-> Advice: " << ch.NABodyRoundnessIndex(ch.ABodyRoundness(ib.waist, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số VisceralAdiposityIndex là: " << ch.VisceralAdiposityIndex(ib.gender, ib.weight, ib.height, ib.waist, ib.tg, ib.hdl) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NAVisceralAdiposityIndex(ch.VisceralAdiposityIndex(ib.gender, ib.weight, ib.height, ib.waist, ib.tg, ib.hdl)) << RESET << endl;
+    cout << "VisceralAdiposityIndex Index: " << ch.VisceralAdiposityIndex(ib.gender, ib.weight, ib.height, ib.waist, ib.tg, ib.hdl) << endl;
+    cout << "-> Advice: " << ch.NAVisceralAdiposityIndex(ch.VisceralAdiposityIndex(ib.gender, ib.weight, ib.height, ib.waist, ib.tg, ib.hdl)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số LipidAccumulationProduct là: " << ch.LipidAccumulationProduct(ib.gender, ib.waist, ib.tg) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NALipidAccumulationProduct(ch.LipidAccumulationProduct(ib.gender, ib.waist, ib.tg)) << RESET << endl;
+    cout << "LipidAccumulationProduct Index: " << ch.LipidAccumulationProduct(ib.gender, ib.waist, ib.tg) << endl;
+    cout << "-> Advice: " << ch.NALipidAccumulationProduct(ch.LipidAccumulationProduct(ib.gender, ib.waist, ib.tg)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số FatMass là: " << ch.FatMass(ib.gender, ib.weight, ib.height, ib.age) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NABFM(ch.FatMass(ib.gender, ib.weight, ib.height, ib.age)) << RESET << endl;
+    cout << "FatMass Index: " << ch.FatMass(ib.gender, ib.weight, ib.height, ib.age) << endl;
+    cout << "-> Advice: " << ch.NABFM(ch.FatMass(ib.gender, ib.weight, ib.height, ib.age)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Chỉ số LeanMass là: " << ch.LeanMass(ib.gender, ib.weight, ib.height) << RESET << endl;
-    cout << GREEN << "-> Lời khuyên: " << ch.NALBM(ch.LeanMass(ib.gender, ib.weight, ib.height)) << RESET << endl;
+    cout << "LeanMass Index: " << ch.LeanMass(ib.gender, ib.weight, ib.height) << endl;
+    cout << "-> Advice: " << ch.NALBM(ch.LeanMass(ib.gender, ib.weight, ib.height)) << endl;
     cout << endl;
 
-    cout << YELLOW << "Hướng dẫn sử dụng:" << RESET << endl;
-    cout << CYAN << ch.INSTRUCT(function_name = "all", write_to_file = false) << RESET << endl;
-    cout << endl;
+    cout << "Instructions for use:" << endl;
+    cout << ch.INSTRUCT("all", false) << endl;
 
     return 0;
 }
