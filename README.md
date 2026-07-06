@@ -1,8 +1,8 @@
 ![C_healthy-logo](img/logo.png)
 
-## C_healthy C++
+## C-healthy C++
 
-**C_healthy C++** là thư viện gọn nhẹ (Header-only) hỗ trợ tính toán và phân tích 17 chỉ số sức khỏe chuyên sâu như BMI, BMR, TDEE, HSI, VO2Max,... Bên cạnh các phép tính toán học hiệu năng cao, thư viện còn tích hợp sẵn hệ thống chuyên gia **NA (Nutrition Advice)** giúp tự động phân tích kết quả và xuất lời khuyên dinh dưỡng bằng tiếng Việt chuẩn UTF-8 ngay trên Console.
+**C-healthy C++** là thư viện gọn nhẹ (Header-only) hỗ trợ tính toán và phân tích 17 chỉ số sức khỏe chuyên sâu như BMI, BMR, TDEE, HSI, VO2Max,... Bên cạnh các phép tính toán học hiệu năng cao, thư viện còn tích hợp sẵn hệ thống chuyên gia **NA (Nutrition Advice)** giúp tự động phân tích kết quả và xuất lời khuyên dinh dưỡng bằng tiếng Việt chuẩn UTF-8 ngay trên Console.
 
 ---
 
