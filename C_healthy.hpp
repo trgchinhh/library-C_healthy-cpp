@@ -22,15 +22,12 @@
 #ifndef INCLUDE_C_HEALTHY_HPP
 #define INCLUDE_C_HEALTHY_HPP
 
-#include <iostream>
 #include <cmath>
 #include <stdexcept>
 #include <windows.h>
 #include <fstream>
-#include <sstream>
 #include <winnls.h>
 #include <unordered_map>
-#include <map>
 #include <algorithm>
 
 using namespace std;
