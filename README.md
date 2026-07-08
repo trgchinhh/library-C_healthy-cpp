@@ -1,4 +1,4 @@
-![C_healthy-logo](img/logo.png)
+![C_healthy-logo](https://github.com/trgchinhh/library-C_healthy-cpp/blob/main/img/logo.png)
 
 ## C-healthy C++
 
